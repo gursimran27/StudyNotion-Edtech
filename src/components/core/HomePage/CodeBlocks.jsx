@@ -1,18 +1,18 @@
 import React from 'react'
-import Highlighttext from './HomePage/Highlighttext'
-import CTAButton from './HomePage/Button'
+import Highlighttext from './Highlighttext'
+import CTAButton from './Button'
 import { FaArrowRight } from "react-icons/fa"
 import { TypeAnimation } from 'react-type-animation'
 
 
-const CodeBlocks = ({position,heading,subheading,ctabtn1,ctabtn2,codeblock,backgroundGradient,codeColor}) => {
+const CodeBlocks = ({position,heading,subheading,ctabtn1,ctabtn2,codeblock,backgroudGradient,codeColor}) => {
   return (
-    <div className={`flex ${position} my-20 gap-10 justify-between`}>
+    <div className={`flex ${position} my-20 lg:gap-10 gap-10 justify-between mx-auto items-center flex-col w-11/12 `}>
 
         {/* section-1 */}
-        <div className="w-[50%] flex flex-col gap-8">
+        <div className="lw-[100%] lg:w-[50%] flex flex-col gap-8">
             {heading}
-            <div className=' text-richblue-300 font-bold'>
+            <div className=' text-richblack-300 text-base font-bold w-[85%] -mt-3'>
                 {subheading}
             </div>
 
@@ -32,11 +32,15 @@ const CodeBlocks = ({position,heading,subheading,ctabtn1,ctabtn2,codeblock,backg
 
         </div>
     
-        {/* section-2 */}
-        <div className='flex h-fit flex-row text-[15px] w-[100%] lg:w-[500px] py-4'>
-            {/* HW graident */}
 
-            <div className=' text-center flex flex-col w-[10%] text-richblack-400 font-inter font-bold'>
+
+        {/* section-2 */}
+        <div className='h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]'>
+            {/* HW graident->done */}
+            {backgroudGradient}
+        
+
+            <div className=' text-center flex flex-col   w-[10%] select-none text-richblack-400 font-inter font-bold '>
                 <p>1</p>
                 <p>2</p>
                 <p>3</p>
@@ -50,16 +54,17 @@ const CodeBlocks = ({position,heading,subheading,ctabtn1,ctabtn2,codeblock,backg
                 <p>11</p>
             </div>
 
-            <div className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-2`}>
+            <div className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-1`}>
                 <TypeAnimation
                    sequence={[codeblock,2000,""]}
                    repeat={Infinity}
                    cursor={true}
                    omitDeletionAnimation={true}
+                   speed={50}
                    style={
                     {
                         whiteSpace:"pre-line",
-                        display:"block"
+                        display:"block",
                     }
                    }
                 />
