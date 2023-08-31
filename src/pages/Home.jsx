@@ -18,7 +18,7 @@ const Home = () => {
     useEffect(()=>
     {
         Aos.init({
-            duration: 2000,
+            duration: 1000,
             offset: 120,
             // delay:50,
             // once:true
@@ -26,7 +26,7 @@ const Home = () => {
     },[])
 
   return (
-    <div>
+    <div className=' mt-14'>
 
         {/* Section-1 */}
         <div className="relative mx-auto flex flex-col w-11/12 items-center max-w-maxContent text-white justify-between">
@@ -75,7 +75,7 @@ const Home = () => {
             </div>
 
             {/* code section-1 */}
-            <div data-aos="slide-right">
+            <div data-aos="slide-right" className='group'>
                 <CodeBlocks 
                     position={" lg:flex-row"}
                     heading={
@@ -103,7 +103,7 @@ const Home = () => {
                         }
                     }
                     codeblock={
-                        `<!DOCTYPE html>\n<html>\n<head><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</body>`
+                        `<!DOCTYPE html>\n<html>\n<head><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n</body>`
                     }
                     codeColor={"text-yellow-25"}
                     backgroudGradient={<div className="codeblock1 absolute"></div>}
@@ -138,7 +138,7 @@ const Home = () => {
                         }
                     }
                     codeblock={
-                        `<!DOCTYPE html>\n<html>\n<head><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>\n</body>`
+                        `<!DOCTYPE html>\n<html>\n<head><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n</body>`
                     }
                     codeColor={"text-blue-25"}
                     backgroudGradient={<div className="codeblock2 absolute"></div>}

@@ -16,6 +16,8 @@ const store = configureStore(
 );
 
 
+// In Strict Mode, React will call your component function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production.
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

@@ -16,7 +16,7 @@ require('dotenv').config();
 exports.sendOTP = async(req , res)=>{
 
     try {
-        // fetch emial from req body
+        // fetch email from req body
     const {email} = req.body;
 
     if(!email){
@@ -304,6 +304,8 @@ exports.login = async (req , res)=>{
         )
     }
 }
+
+
 
 // TODO: changePassword
 exports.changePassword = async(req , res)=>{

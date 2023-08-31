@@ -6,7 +6,7 @@ import Logo from "../../assets/Logo/Logo-Full-Light.png";
 // Icons
 import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
 import Aos from "aos";
-import "aos/dist/aos.css"
+// import "aos/dist/aos.css"
 
 
 
@@ -185,7 +185,7 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="text-center">Made with ❤️ CodeHelp © 2023 Studynotion</div>
+          <div className="text-center">Made with ❤️ by Gursimran Singh © 2023 Studynotion</div>
         </div>
       </div>
     </div>

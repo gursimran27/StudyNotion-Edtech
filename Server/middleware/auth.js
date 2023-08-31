@@ -21,9 +21,9 @@ exports.auth = async(req , res , next)=>{
 
         // verify the token
         try {
-            const decode = jwt.verify(token , process.env.JWT_SECRET);
+            const decode = jwt.verify(token , process.env.JWT_SECRET); // now decode is having ID,email,and accountType 
             console.log(decode);
-            req.user = decode; //for authorisation
+            req.user = decode; //*for authorisation 
 
         } catch (error) {
             console.log(error);

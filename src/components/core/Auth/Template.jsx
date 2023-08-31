@@ -1,68 +1,51 @@
-import React from 'react'
+import { FcGoogle } from "react-icons/fc"
+import { useSelector } from "react-redux"
+
 import frameImg from "../../../assets/Images/frame.png"
-import SignupForm from "../Auth/SignupForm"
-import LoginForm from '../Auth/LoginForm'
-// import { Link } from 'react-router-dom'
-import {FcGoogle} from "react-icons/fc"
+import LoginForm from "./LoginForm"
+import SignupForm from "./SignupForm"
+import Spinner from "../../common/Spinner"
 
-// basically in template we add the common part of  both the login and signup
+function Template({ title, description1, description2, image, formType }) {
+  const { loading } = useSelector((state) => state.auth)
 
-
-const Template = ({title , desc1 , desc2 , image , formtype }) => {
   return (
-    <div className='flex md:flex-row flex-col-reverse justify-between w-11/12 max-w-[1160px] py-12 mx-auto gap-x-12 gap-y-0 md:items-start items-center'>
-
-            <div className='w-11/12 max-w-[450px] mx-0'>
-                <h1 className='text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem]'>{title}</h1>
-
-                <p className='text-[1.125rem] leading-[1.625rem] mt-4'>
-                    <span className='text-richblack-100 '>{desc1}</span>
-                      <br/>
-                    <span className='text-blue-100 italic'>{desc2}</span>
-                </p>
-
-                {
-                    formtype==='signup'? 
-                    (<SignupForm/>) :
-                    (<LoginForm/>)
-                }
-
-
-                <div className='flex w-full items-center my-4 gap-x-2 '>
-                        <div className='h-[1px] w-full bg-richblack-700 '></div>
-                        <p className='text-richblack-700 font-medium leading-[1.175rem]'>OR</p>
-                        <div className='h-[1px] w-full bg-richblack-700 '></div>
-                </div>
-                
-
-                <button className='flex justify-center items-center w-full rounded-[8px] font-medium text-richblack-100 border border-richblack-700 px-[12px] py-[8px] gap-x-2 mt-6'><FcGoogle/>Sign Up with Google</button>
-
-            </div>
-
-
-
-            <div className='relative w-11/12 max-w-[450px]'>
-                <img 
-                src={frameImg} 
-                alt="pattern" 
-                width={558} 
-                height={584} 
-                loading="lazy"
-                className=''
-                 />
-
-
-                <img 
-                src={image} 
-                alt="student" 
-                width={558} 
-                height={584} 
-                loading="lazy" 
-                className='absolute -top-4 right-4'
-                />
-
-            </div>
-
+    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+      {loading ? (
+        <Spinner/>
+      ) : (
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col-reverse justify-between gap-y-12 py-12 md:flex-row md:gap-y-0 md:gap-x-12">
+          <div className="mx-auto w-11/12 max-w-[450px] md:mx-0">
+            <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-richblack-5">
+              {title}
+            </h1>
+            <p className="mt-4 text-[1.125rem] leading-[1.625rem]">
+              <span className="text-richblack-100">{description1}</span>{" "}<br/>
+              <span className="font-edu-sa font-bold italic text-blue-100">
+                {description2}
+              </span>
+            </p>
+            {formType === "signup" ? <SignupForm /> : <LoginForm />}
+          </div>
+          <div className="relative mx-auto w-11/12 max-w-[450px] md:mx-0">
+            <img
+              src={frameImg}
+              alt="Pattern"
+              width={558}
+              height={504}
+              loading="lazy"
+            />
+            <img
+              src={image}
+              alt="Students"
+              width={558}
+              height={504}
+              loading="lazy"
+              className="absolute -top-4 right-4 z-10"
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

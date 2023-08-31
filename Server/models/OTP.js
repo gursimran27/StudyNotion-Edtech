@@ -12,12 +12,16 @@ const OTPSchema =new  mongoose.Schema(
            type:String,
            required:true,
        },
-       createdAt:{
-        type:Date,
-        default:Date.now(),
-        expires:60*5,// The document will be automatically deleted after 5 minutes of its creation time
-       }
-    }
+    //    createdAt:{
+    //     type:Date,
+    //     default:Date.now(),
+    //     expires: new Date(new Date().getTime() + 5 * 60 * 1000),// The document will be automatically deleted after 5 minutes of its creation time
+    //    }
+    },
+    {
+        timestamps: { createdAt: 'createdAt' },
+        expires: 300 // Expiry time in seconds (5 minutes)
+     }
 );
 
 // functoin to send mail

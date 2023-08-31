@@ -58,7 +58,7 @@ exports.showAllCategory = async(req, res)=>{
             {
                 success:true,
                 message:`Category Successfully fetched`,
-                allCategory
+                data: allCategory,
             }
         )
 

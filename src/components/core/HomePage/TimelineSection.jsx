@@ -72,7 +72,7 @@ const TimelineSection = () => {
                                 </div>
 
                                 {
-                                    index!==3?<div class="hidden lg:block  h-14 border-dotted border-r border-richblack-100 bg-richblack-400/0 w-[26px]"></div>:
+                                    index!==3?<div className="hidden lg:block  h-14 border-dotted border-r border-richblack-100 bg-richblack-400/0 w-[26px]"></div>:
                                     null
                                 }
 
