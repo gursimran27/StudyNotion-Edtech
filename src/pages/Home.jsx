@@ -12,13 +12,15 @@ import ExploreMore from "../components/core/HomePage/ExploreMore"
 import Footer from "../components/common/Footer"
 import Aos from 'aos'
 import "aos/dist/aos.css"
+import MyTypeForm from "../components/TypeForm/MyTypeForm"
+
 
 const Home = () => {
 
     useEffect(()=>
     {
         Aos.init({
-            duration: 1000,
+            duration: 800,
             offset: 120,
             // delay:50,
             // once:true
@@ -137,9 +139,7 @@ const Home = () => {
                             active:false
                         }
                     }
-                    codeblock={
-                        `<!DOCTYPE html>\n<html>\n<head><title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a>\n</h1>\n<nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n</body>`
-                    }
+                    codeblock= {`import React from "react";\n import CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\n\nconst Home = () => {\nreturn (\n<div>Home</div>\n)\n}\nexport default Home;`}
                     codeColor={"text-blue-25"}
                     backgroudGradient={<div className="codeblock2 absolute"></div>}
                 />
@@ -237,7 +237,8 @@ const Home = () => {
             <Footer/>
         </div>
 
-
+        
+        <MyTypeForm/>
 
     </div>
   )

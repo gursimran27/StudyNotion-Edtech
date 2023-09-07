@@ -1,12 +1,15 @@
-import { ACCOUNT_TYPE } from "../utils/constants";
+import { ACCOUNT_TYPE } from "../utils/constants"
+
 export const sidebarLinks = [
   {
+    // common to both student and instructore
     id: 1,
     name: "My Profile",
     path: "/dashboard/my-profile",
     icon: "VscAccount",
   },
   {
+    // for instructor only
     id: 2,
     name: "Dashboard",
     path: "/dashboard/instructor",
@@ -14,6 +17,7 @@ export const sidebarLinks = [
     icon: "VscDashboard",
   },
   {
+    // for instructor only
     id: 3,
     name: "My Courses",
     path: "/dashboard/my-courses",
@@ -21,6 +25,7 @@ export const sidebarLinks = [
     icon: "VscVm",
   },
   {
+    // for instructor only
     id: 4,
     name: "Add Course",
     path: "/dashboard/add-course",
@@ -28,6 +33,7 @@ export const sidebarLinks = [
     icon: "VscAdd",
   },
   {
+    // for student only
     id: 5,
     name: "Enrolled Courses",
     path: "/dashboard/enrolled-courses",
@@ -35,10 +41,11 @@ export const sidebarLinks = [
     icon: "VscMortarBoard",
   },
   {
-    id: 6,
-    name: "Purchase History",
-    path: "/dashboard/purchase-history",
+    // for student only
+    id: 7,
+    name: "Cart",
+    path: "/dashboard/cart",
     type: ACCOUNT_TYPE.STUDENT,
-    icon: "VscHistory",
+    icon: "VscArchive",
   },
-];
+]

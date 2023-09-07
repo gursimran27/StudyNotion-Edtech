@@ -99,7 +99,7 @@ const Navbar = () => {
                     {
                         NavbarLinks.map( (ele,index)=>{
                             return(
-                                <li key={index}>
+                                <li key={index} className={`hover:scale-[1.1] transition-all duration-200 ${ele.path && matchRoute(ele?.path)? (`animate-pulse hover:animate-none`): (null)}`}>
                                     {
                                         ele.title === "Catalog" ? 
                                             <div className='group relative flex cursor-pointer items-center gap-1 text-richblack-25'>
@@ -136,7 +136,8 @@ const Navbar = () => {
                                         :
                                             <NavLink to={ele.path}>
                                                 <p
-                                                className={`${matchRoute(ele.path) ? ` text-yellow-25` : ` text-richblack-25`}`}>
+                                                className={`
+                                                ${matchRoute(ele.path) ? ` text-yellow-25` : ` text-richblack-25`}`}>
                                                     {ele.title}
                                                 </p>
                                             </NavLink>

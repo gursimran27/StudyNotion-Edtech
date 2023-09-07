@@ -1,5 +1,5 @@
 // This will prevent authenticated users from accessing this route
-// means that when the User is logged in and then h he/she is trying to access the /login or /singup route then the below logic will prevent them and navigate them to their dashboard
+// means that when the User is logged in and then he/she is trying to access the /login or /singup route then the below logic will prevent them and navigate them to their dashboard
 
 
 import { useSelector } from "react-redux"

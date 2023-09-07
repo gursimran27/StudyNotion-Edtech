@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo/Logo-Full-Light.png";
 // Icons
 import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";
-import Aos from "aos";
+// import Aos from "aos";
 // import "aos/dist/aos.css"
 
 
@@ -184,8 +184,9 @@ const Footer = () => {
               );
             })}
           </div>
+          
 
-          <div className="text-center">Made with ❤️ by Gursimran Singh © 2023 Studynotion</div>
+          <div className="text-center">Made with ❤️ by <span className=" select-none bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-xl font-semibold text-transparent">Gursimran Singh</span> © 2023 Studynotion</div>
         </div>
       </div>
     </div>

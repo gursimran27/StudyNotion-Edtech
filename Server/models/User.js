@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema(
             ref:"CourseProgress"
             }
         ],
-        token:{
+        token:{ //for reset passord
             type:String,
         },
         resetPasswordExpires:{

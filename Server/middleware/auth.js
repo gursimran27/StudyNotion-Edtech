@@ -7,7 +7,7 @@ const User = require("../models/User")
 exports.auth = async(req , res , next)=>{
     try {
         // fetch the token
-        const token = req.body.token || req.cookies.token ||req.header("Authorisation").replace("Bearer ", "");
+        const token = req.body.token || req.cookies.token ||req.header("Authorization").replace("Bearer ", "");
 
         // if token is missing
         if(!token){
@@ -39,7 +39,7 @@ exports.auth = async(req , res , next)=>{
 
     } catch (error) {
         console.log(error);
-        return res.status(500),json(
+        return res.status(500).json(
             {
                 success:false,
                 message:`Something went worng while validating the token`

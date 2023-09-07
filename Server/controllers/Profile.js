@@ -3,6 +3,8 @@ const Profile = require("../models/Profile")
 const User = require("../models/User")
 const Course = require("../models/Course")
 const { uploadImageToCloudinary } = require("../utils/imageUploader")
+const cloudinary = require("cloudinary").v2
+
 
 
 // as after signing up, while creating the user we also had created the profile doc..so we need to update that profile only
@@ -13,27 +15,39 @@ exports.updateProfile = async ( req , res )=>{
     try {
         
         // get data
-        const { gender , contactNumber , dateOfBirth="" , about="" } = req.body
+        const {
+            firstName = "",
+            lastName = "",
+            dateOfBirth = "",
+            about = "",
+            contactNumber = "",
+            gender = "",
+          } = req.body
 
         // get userId ..as the user is loggedin of remember req.user = decode
         const id = req.user.id;
 
         // validation
-        if(!gender ||!contactNumber || !id){
-            return res.status(400).json(
-                {
-                    success:false,
-                    message:`All fields are required`
-                }
-            )
-            }
+        // if(!gender ||!contactNumber || !id){
+        //     return res.status(400).json(
+        //         {
+        //             success:false,
+        //             message:`All fields are required`
+        //         }
+        //     )
+        //     }
+
 
         // find the profile
         const userDetails = await User.findById(id)
-
         const profileId = userDetails?.additonalDetails;
-
         const profileDetails = await Profile.findById(profileId);
+
+        const user = await User.findByIdAndUpdate(id, {
+            firstName,
+            lastName,
+          })
+        await user.save()
 
         // update the profile
         // as the profileDetails is an object 
@@ -44,13 +58,17 @@ exports.updateProfile = async ( req , res )=>{
 
         await profileDetails.save(); //we can also use findbyidandupdate method.
         
-        profileDetails.contactNumber = undefined;
+        // Find the updated user details
+        const updatedUserDetails = await User.findById(id)
+        .populate("additonalDetails")
+        .exec()
+
         // return res
         return res.status(200).json(
             {
                 success:true,
                 message:`Profile updated successfully`,
-                profileDetails
+                updatedUserDetails
             }
         )
 
@@ -96,7 +114,9 @@ exports.deleteAccount = async ( req , res ) =>{
         }
                
         // delete profile also
-        await Profile.findByIdAndDelete({_id:userDetails?.additonalDetails});
+        await Profile.findByIdAndDelete({
+            _id: userDetails?.additonalDetails,
+          })
         
         // TODO update the enrolledAccount in Course model
         for (const courseId of userDetails.courses) {
@@ -106,6 +126,22 @@ exports.deleteAccount = async ( req , res ) =>{
               { new: true }
             )
           }
+
+        //   delete the profile img from cloudinary
+        const profileID= userDetails?.image.split("/").pop().split(".")[0];
+        if(profileID.includes("?") && profileID.includes("=")){
+            console.log(`no image uploaded to cloudinary`);
+        }
+        else{
+            try {
+                console.log(`Deleting displayPicture...`, profileID);
+                await cloudinary.uploader.destroy(`StudyNotion/${profileID}` ,function(error,result) {
+                    console.log(result, error) });
+            } catch (error) {
+                console.log(`Unable to delete profile pic from cloudinary`);
+                console.log(error.message);
+            }
+        }
         
         // delete user
         await User.findByIdAndDelete({_id:userId}) 
@@ -118,6 +154,8 @@ exports.deleteAccount = async ( req , res ) =>{
                 message:`User deleted successfully`,
             }
         )
+
+        // await CourseProgress.deleteMany({ userId: id })  
 
     } catch (error) {
         console.log(error);
@@ -152,12 +190,14 @@ exports.getUserDetails = async ( req , res )=>{
         const userDetails = await User.findById(userId).populate("additonalDetails").exec();
 		console.log(userDetails);
 
-        if(!userDetails)(400).json(
-            {
-                success:false,
-                message:`User not found`
-            }
-        )
+        if(!userDetails){
+            return res.status(400).json(
+                {
+                    success:false,
+                    message:`User not found`
+                }
+            )
+        }
 
         // return res
         return res.status(200).json(
@@ -233,9 +273,17 @@ exports.updateDisplayPicture = async(req , res)=>{
 exports.getEnrolledCourses = async (req ,res)=>{
     try {
         const userId = req.user.id;
-
-        const userDetails = await User.findOne(userId)
-        .populate("courses")
+ 
+        const userDetails = await User.findOne({_id:userId})
+        .populate({
+            path:'courses',
+            populate: {
+                path: "courseContent",
+                populate:{
+                    path: "subSection",
+                },
+            },
+        })
         .exec();
 
         if(!userDetails){

@@ -311,7 +311,7 @@ exports.login = async (req , res)=>{
 exports.changePassword = async(req , res)=>{
     try {
     // get data from req body
-    const { oldPassword , newPassword , confirmNewPassword } = req.body;
+    const { oldPassword , newPassword } = req.body;
 
     // get the user id
     const userId = req.user.id;
@@ -324,6 +324,7 @@ exports.changePassword = async(req , res)=>{
     const isPasswordMatch = await bcrypt.compare(oldPassword, userDetails.password);
 
     if(!isPasswordMatch){
+         // If old password does not match, return a 401 (Unauthorized) error
         return res.status(401).json(
             {
                 success:false,
@@ -333,12 +334,12 @@ exports.changePassword = async(req , res)=>{
     }
 
     // Match new password and confirm new password
-    if(newPassword !== confirmNewPassword){
-        return res.status(400).json({
-            success: false,
-            message: "The password and confirm password does not match",
-        });
-    }
+    // if(newPassword !== confirmNewPassword){
+    //     return res.status(400).json({
+    //         success: false,
+    //         message: "The password and confirm password does not match",
+    //     });
+    // }
     // update pwd in DB
     const encryptedPassword = await bcrypt.hash(newPassword , 10);
     const updatedUserDetails = await User.findByIdAndUpdate(

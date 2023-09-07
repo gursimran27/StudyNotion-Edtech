@@ -4,6 +4,7 @@ import apiConnector from "../../services/apiconnector"
 import contactusEndpoint from "../../services/apis"
 import CountryCode from "../../data/countrycode.json"
 import Spinner from "../common/Spinner"
+import { toast } from 'react-hot-toast'
 
 const ContactUsForm = () => {
 
@@ -17,17 +18,17 @@ const ContactUsForm = () => {
 
     const submitContactForm = async(data)=>{
         console.log("logging Data...", data);
-
+        const toastId = toast.loading("Sending...")
+        setLoading(true)
         try {
-            setLoading(true)
             // const response = apiConnector("POST" , contactusEndpoint.CONTACT_US_API, data);
             const response = { status:"ok"}
             console.log("logging response...", response);
         } catch (error) {
             console.log("ERROR..", error.message);
         }
-        setLoading(false);  
-
+        setLoading(false);
+        toast.dismiss(toastId)
     };
 
 
@@ -219,7 +220,7 @@ const ContactUsForm = () => {
 
     {
         loading && (
-            <div className=' mx-auto'>
+            <div className=' mx-auto mt-5'>
                 <Spinner/>
             </div>
         )

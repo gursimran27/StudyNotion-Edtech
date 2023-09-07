@@ -59,7 +59,7 @@ function SignupForm() {
     dispatch(sendOtp(formData.email, navigate)) //async-code
 
     // Reset
-    console.log("testing",signupData);
+    // console.log("testing",signupData);
     setFormData({
       firstName: "",
       lastName: "",
