@@ -19,6 +19,7 @@ import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import Cart from "./components/core/Dashboard/Cart";
+import BookmarkedCourses from "./components/core/Dashboard/Wishlist/index"
 
 
 
@@ -92,6 +93,7 @@ function App() {
                 element={<EnrolledCourses />}
               />
               <Route path="/dashboard/cart" element={<Cart />} />
+              <Route path="dashboard/bookmarked-courses" element={<BookmarkedCourses/>}/>
             </>
           )}
 

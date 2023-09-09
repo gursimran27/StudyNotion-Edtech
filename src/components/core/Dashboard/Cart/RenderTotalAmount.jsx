@@ -1,34 +1,38 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import IconBtn from '../../../common/IconBtn'
+import { useNavigate } from 'react-router-dom'
 
-const RenderTotalAmount = () => {
+const RenderToatalAmount = () => {
 
-    const {total,cart}=useSelector((state)=>state.cart)
+  const {total, cart} = useSelector((state)=>state.cart);
+  const {token} = useSelector((state)=>state.auth);
+  const {user} = useSelector((state)=>state.profile);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
-    const handleByCourse = ()=>{
-        // fetch all courses id that user want to buy from cart
-        const course= cart.map( (course)=>course._id)   //return a new array of id
-        console.log("Bought these courses..", course);
-        // TODO API integrate->payment gateway
-    }
+  const handleBuyCourse = ()=>{
+    const courses = cart.map((course)=>course._id)// get id of all courses so so send to backend
+    console.log("Buy Course", courses)
+    // buyCourse(token, courses, user, navigate, dispatch)
+  }
 
   return (
-    <div>
+    <div className='min-w-[280px] rounded-md border-[1px] border-richblue-700 bg-richblack-800 p-6'>
 
-        <p>Total:</p>
-        <p>Rs {total}</p>
+      <p className='mb-1 text-sm font-medium text-richblack-300'>Total:</p>
+      <p className='mb-6 text-3xl font-medium text-yellow-100'>Rs {total}</p>
 
-
-        <IconBtn 
-          text={"Buy Now"}
-          onclick={handleByCourse}
-          customClasses="w-full justify-center"
-          />
+      {/* button */}
+      <IconBtn
+        text="Buy Now"
+        onclick={handleBuyCourse}
+        customClasses={"w-full justify-center"}
+      />
 
     </div>
   )
 }
 
-export default RenderTotalAmount
+export default RenderToatalAmount

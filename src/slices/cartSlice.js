@@ -18,7 +18,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const course = action.payload
+      const course = action.payload //need full course
       const index = state.cart.findIndex((item) => item._id === course._id)
 
       if (index >= 0) {
@@ -39,7 +39,7 @@ const cartSlice = createSlice({
       toast.success("Course added to cart")
     },
     removeFromCart: (state, action) => {
-      const courseId = action.payload
+      const courseId = action.payload //need courseId
       const index = state.cart.findIndex((item) => item._id === courseId)
 
       if (index >= 0) {

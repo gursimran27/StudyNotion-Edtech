@@ -1,7 +1,7 @@
 import React from 'react'
 // import all icon of vsc category
 import * as Icons from "react-icons/vsc"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 
 const SidebarLink = ({link, iconName}) => {
@@ -9,6 +9,7 @@ const SidebarLink = ({link, iconName}) => {
     const Icon = Icons[iconName];
     const location = useLocation();
     const dispatch = useDispatch();
+    const {totalWishlistItems}= useSelector( (state)=>state.wishlist)
 
     const matchRoute = (route)=>{
       return matchPath({path:route}, location.pathname)
@@ -33,6 +34,12 @@ const SidebarLink = ({link, iconName}) => {
           <div className="flex items-center gap-x-2">
             <Icon className="text-lg"/>
             <span>{link?.name}</span>
+            {
+              link.name === "Wishlist" && totalWishlistItems > 0 && (
+            <span className="absolute top-0 left-10 grid h-4 w-4 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100 animate-bounce">
+               {totalWishlistItems}
+            </span>
+            )}
           </div>
 
         </NavLink>

@@ -99,13 +99,13 @@ const Navbar = () => {
                     {
                         NavbarLinks.map( (ele,index)=>{
                             return(
-                                <li key={index} className={`hover:scale-[1.1] transition-all duration-200 ${ele.path && matchRoute(ele?.path)? (`animate-pulse hover:animate-none`): (null)}`}>
+                                <li key={index} className={`group hover:scale-[1.1] transition-all duration-200 ${ele.path && matchRoute(ele?.path)? (`animate-pulse hover:animate-none`): (null)}`}>
                                     {
                                         ele.title === "Catalog" ? 
                                             <div className='group relative flex cursor-pointer items-center gap-1 text-richblack-25'>
                                                 
-                                                <p>{ele.title}</p>
-                                                <BsChevronDown/>
+                                                <p className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200'>{ele.title}</p>
+                                                <BsChevronDown className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200'/>
 
                                                 <div className='invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]'>
 
@@ -137,6 +137,7 @@ const Navbar = () => {
                                             <NavLink to={ele.path}>
                                                 <p
                                                 className={`
+                                                group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200
                                                 ${matchRoute(ele.path) ? ` text-yellow-25` : ` text-richblack-25`}`}>
                                                     {ele.title}
                                                 </p>
@@ -156,9 +157,11 @@ const Navbar = () => {
             <div className='flex gap-x-4 items-center'>
 
                 {
-                    user && user?.acountType!="Instructor" &&
-                       <NavLink to={"/dashboard/cart"} className='relative'>
-                           <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+                    user && user?.accountType!="Instructor" &&
+                       <NavLink to={"/dashboard/cart"} className='relative group'>
+                           <AiOutlineShoppingCart className={`text-2xl text-richblack-100 group-hover:text-yellow-5 group-hover:opacity-70 group-hover:scale-[1.1] transition-all duration-200 
+                           ${matchRoute("/dashboard/cart") ? ` text-yellow-25` : ` text-richblack-25`}
+                           `} />
                            {
                             totalItems >0 && 
                                 <span className="absolute -top-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100 animate-bounce">
@@ -173,7 +176,9 @@ const Navbar = () => {
                     token ==null && 
                         <NavLink to={"/login"}>
 
-                            <button className=' rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-200 hover:border-none'>
+                            <button className= {`rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-200 hover:border-none
+                            ${matchRoute("/login") ? ` text-yellow-25` : ` text-richblack-25`}
+                            `}>
                                 Log in
                             </button>
 
@@ -184,7 +189,9 @@ const Navbar = () => {
                     token ==null && 
                         <NavLink to={"/signup"}>
 
-                            <button className='rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-20 hover:border-none'>
+                            <button className={`rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-20 hover:border-none
+                            ${matchRoute("/signup") ? ` text-yellow-25` : ` text-richblack-25`}
+                            `}>
                                 Sign Up
                             </button>
 

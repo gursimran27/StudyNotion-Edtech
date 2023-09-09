@@ -42,6 +42,14 @@ export const sidebarLinks = [
   },
   {
     // for student only
+    id: 6,
+    name: "Wishlist",
+    path: "/dashboard/bookmarked-courses",
+    type: ACCOUNT_TYPE.STUDENT,
+    icon: "VscBookmark",
+  },
+  {
+    // for student only
     id: 7,
     name: "Cart",
     path: "/dashboard/cart",
