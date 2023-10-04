@@ -13,7 +13,7 @@ const RenderToatalAmount = () => {
 
 
   const handleBuyCourse = ()=>{
-    const courses = cart.map((course)=>course._id)// get id of all courses so so send to backend
+    const courses = cart.map((course)=>course._id)// get id of all courses so so send to backend so to buy them
     console.log("Buy Course", courses)
     // buyCourse(token, courses, user, navigate, dispatch)
   }

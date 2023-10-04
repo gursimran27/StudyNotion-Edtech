@@ -9,7 +9,7 @@ const ConfirmationModal = ({modaldata}) => {
 
   // so that if user clicked on rest of space then close the modal
   const ref=useRef(null)
-  useOnClickOutside(ref,modaldata?.btn2Handler)
+  useOnClickOutside(ref,modaldata?.btn2Handler);
 
 
   return (
