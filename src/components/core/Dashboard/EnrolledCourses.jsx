@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react"
-import ProgressBar from "@ramonak/react-progress-bar"
+import { useEffect, useState } from "react";
+import ProgressBar from "@ramonak/react-progress-bar";
 // import { BiDotsVerticalRounded } from "react-icons/bi"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
-import Spinner from "../../common/Spinner"
+import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
+import Spinner from "../../common/Spinner";
 
 export default function EnrolledCourses() {
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-  const [enrolledCourses, setEnrolledCourses] = useState(null)
+  const [enrolledCourses, setEnrolledCourses] = useState(null);
 
   const getEnrolledCourses = async () => {
     try {
@@ -19,25 +19,24 @@ export default function EnrolledCourses() {
 
       setEnrolledCourses(res);
     } catch (error) {
-      console.log("Could not fetch enrolled courses.")
+      console.log("Could not fetch enrolled courses.");
       console.log(error.message);
     }
   };
   useEffect(() => {
     getEnrolledCourses();
-  }, []) //firstReander
+  }, []); //firstReander
 
   return (
     <>
-      <div className="text-3xl text-richblack-50 select-none font-bold bg-gradient-to-tr from-[#ff1f41] via-[#bcfa12] to-[#A6FFCB]  bg-clip-text text-transparent animate-pulse">Enrolled Courses:</div>
-      {!enrolledCourses ? 
-      (
+      <div className="text-3xl text-richblack-50 select-none font-bold bg-gradient-to-tr from-[#ff1f41] via-[#bcfa12] to-[#A6FFCB]  bg-clip-text text-transparent animate-pulse">
+        Enrolled Courses:
+      </div>
+      {!enrolledCourses ? (
         <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
           <Spinner />
         </div>
-      ) 
-      : !enrolledCourses.length ? 
-      (
+      ) : !enrolledCourses.length ? (
         <p className="grid h-[10vh] text-lg w-full place-content-center text-richblack-5 select-none font-bold bg-gradient-to-r from-[#35ff1f] via-[#fa6b12] to-[#b8a6ff]  bg-clip-text text-transparent">
           You have not enrolled in any course yet.
           {/* TODO: Modify this Empty State */}
@@ -63,7 +62,7 @@ export default function EnrolledCourses() {
                 onClick={() => {
                   navigate(
                     `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
-                  )
+                  );
                 }}
               >
                 <img
@@ -76,7 +75,8 @@ export default function EnrolledCourses() {
                   <p className="text-xs text-richblack-300">
                     {course.courseDescription.length > 50
                       ? `${course.courseDescription.slice(0, 50)}...`
-                      : course.courseDescription} //!.....add a show more state variable logic
+                      : course.courseDescription}{" "}
+                    //!.....add a show more state variable logic
                   </p>
                 </div>
               </div>
@@ -94,5 +94,5 @@ export default function EnrolledCourses() {
         </div>
       )}
     </>
-  )
+  );
 }

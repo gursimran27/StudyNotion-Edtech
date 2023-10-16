@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import Cart from "./components/core/Dashboard/Cart";
 import BookmarkedCourses from "./components/core/Dashboard/Wishlist/index"
+import Scroll from "./components/common/Scroll";
 
 
 
@@ -38,6 +39,8 @@ function App() {
     <div className='w-screen min-h-screen bg-richblack-900 flex flex-col font-inter'>
 
       <Navbar/>
+
+      <Scroll/>
 
       <Routes>
         

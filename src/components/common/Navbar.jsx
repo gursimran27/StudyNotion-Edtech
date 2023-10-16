@@ -67,14 +67,14 @@ const Navbar = () => {
 
   return (
 
-    <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 
+    <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700  w-screen z-[1000]
     ${ location.pathname !== "/" ? "bg-richblack-800" : "" }
     ${ location.pathname === "/" ?
        "fixed w-screen z-[1000]  bg-richblack-900" : "" }
      ${ location.pathname === "/about" ?
      "fixed w-screen z-[1000]  bg-richblack-700" : "" }  
      ${location.pathname === "/contact" || matchRoute("/catalog/:catalogName") ||  matchRoute("/courses/:couseId") ? "fixed w-screen z-[1000]  bg-richblack-800" : "" } 
-     transition-all duration-200 `}>
+     transition-all duration-200`}>
 
         <div className= {`flex fixed ${
         location.pathname !== "/" ? "bg-richblack-800" : "bg-richblack-900"
