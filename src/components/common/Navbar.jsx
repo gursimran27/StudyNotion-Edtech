@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
+import {BsChevronUp} from "react-icons/bs"
 import { apiConnector } from '../../services/apiconnector';
 import { categories } from '../../services/apis'
 import {BsChevronDown} from "react-icons/bs"
@@ -99,13 +100,19 @@ const Navbar = () => {
                     {
                         NavbarLinks.map( (ele,index)=>{
                             return(
-                                <li key={index} className={`group hover:scale-[1.1] transition-all duration-200 ${ele.path && matchRoute(ele?.path)? (`animate-pulse hover:animate-none`): (null)}`}>
+                                <li key={index} className={`group hover:scale-[1.1] transition-all duration-200 ${ele.path && matchRoute(ele?.path)? (`animate-pulse hover:animate-none`): (null)} relative select-none`}>
+
+                                    <span className={`absolute left-0 bottom-0 w-0 h-[1px] bg-yellow-5 transition-all duration-1000 group-hover:w-[80%] ease-in-out ${ele.title==="Catalog" && "group-hover:w-[72%]"}`}></span>
+
+                                    <span className={`absolute right-0 top-0 w-0 h-[1px] bg-yellow-5 transition-all duration-1000 group-hover:w-[80%] ease-in-out ${ele.title==="Catalog" && "group-hover:w-[72%]"}`}></span>
+
                                     {
                                         ele.title === "Catalog" ? 
                                             <div className='group relative flex cursor-pointer items-center gap-1 text-richblack-25'>
                                                 
                                                 <p className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200'>{ele.title}</p>
-                                                <BsChevronDown className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200'/>
+                                                <BsChevronDown className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200 group-hover:hidden ease-in'/>
+                                                <BsChevronUp className='group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200 hidden group-hover:flex ease-in'/>
 
                                                 <div className='invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]'>
 
@@ -158,7 +165,7 @@ const Navbar = () => {
 
                 {
                     user && user?.accountType!="Instructor" &&
-                       <NavLink to={"/dashboard/cart"} className='relative group'>
+                       <NavLink to={"/dashboard/cart"} className='relative group select-none'>
                            <AiOutlineShoppingCart className={`text-2xl text-richblack-100 group-hover:text-yellow-5 group-hover:opacity-70 group-hover:scale-[1.1] transition-all duration-200 
                            ${matchRoute("/dashboard/cart") ? ` text-yellow-25` : ` text-richblack-25`}
                            `} />
@@ -176,7 +183,7 @@ const Navbar = () => {
                     token ==null && 
                         <NavLink to={"/login"}>
 
-                            <button className= {`rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-200 hover:border-none
+                            <button className= {`select-none rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-200 hover:border-none
                             ${matchRoute("/login") ? ` text-yellow-25` : ` text-richblack-25`}
                             `}>
                                 Log in
@@ -189,7 +196,7 @@ const Navbar = () => {
                     token ==null && 
                         <NavLink to={"/signup"}>
 
-                            <button className={`rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-20 hover:border-none
+                            <button className={`select-none rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100 hover:text-yellow-5 hover:scale-95 transition-all duration-20 hover:border-none
                             ${matchRoute("/signup") ? ` text-yellow-25` : ` text-richblack-25`}
                             `}>
                                 Sign Up

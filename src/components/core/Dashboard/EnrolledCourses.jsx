@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 // import { BiDotsVerticalRounded } from "react-icons/bi"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import Spinner from "../../common/Spinner";
+import { setProgress } from "../../../slices/loadingBar";
+
+
 
 export default function EnrolledCourses() {
   const { token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const [enrolledCourses, setEnrolledCourses] = useState(null);
 
   const getEnrolledCourses = async () => {
     try {
+      dispatch(setProgress(70))
       const res = await getUserEnrolledCourses(token);
 
       setEnrolledCourses(res);
@@ -22,6 +26,7 @@ export default function EnrolledCourses() {
       console.log("Could not fetch enrolled courses.");
       console.log(error.message);
     }
+    dispatch(setProgress(100))
   };
   useEffect(() => {
     getEnrolledCourses();

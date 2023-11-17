@@ -3,30 +3,24 @@ import React from "react";
 import style from "./Error.css";
 import { useEffect } from "react";
 
-
-
 const Error = () => {
+  const naviage = useNavigate();
 
-
-
-  const naviage=useNavigate()
-
-useEffect( ()=>{
-  setTimeout(() => {
-    naviage("/")
-  }, 9000);
-})
-
+  useEffect(() => {
+    setTimeout(() => {
+      naviage("/");
+    }, 7000);
+  });
 
   return (
     // <div className='flex flex-1 justify-center items-center text-3xl text-white'>
     //     <p className='text-4xl font-bold bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB]  bg-clip-text text-transparent'>Error 404 - Page Not Found</p>
     // </div>
 
-    <div className="overflow-hidden  max-h-screen h-[100vh] w-full pt-48 lg:pt-14 flex justify-center items-center md:items-start" >
+    <div className="overflow-hidden  max-h-screen h-[100vh] w-full  lg:pt-2 flex justify-center items-center md:items-start">
       <div className="container overflow-y-hidden ">
         <div class="row">
-          <div class="col-sm-12 col-md-12 mt-5 mb-5">
+          <div class="col-sm-12 col-md-12 ">
             <svg
               width="100%"
               height="auto"
@@ -201,7 +195,7 @@ useEffect( ()=>{
                     fill="black"
                   />
                 </g>
-                <g id="zero">
+                <g id="zero" className=" animate-bounce ease-in">
                   <path
                     id="Vector_25"
                     d="M361.2 110.3C351.9 99 338.7 93.3 321.6 93.3C304.6 93.3 291.4 98.9 282.1 110.2C272.8 121.5 268.1 137.4 268.1 158.2V186.3C268.1 206.9 272.8 222.9 282.1 234.2C291.5 245.5 304.7 251.2 321.8 251.2C338.7 251.2 351.9 245.6 361.2 234.3C370.5 223 375.2 207.1 375.2 186.3V158.3C375.2 137.6 370.5 121.6 361.2 110.3ZM303.8 151.3C304 141 305.5 133.4 308.3 128.3C311.1 123.2 315.5 120.7 321.6 120.7C327.9 120.7 332.4 123.4 335.3 128.9C338.2 134.4 339.6 142.6 339.6 153.6V191.6C339.5 202.6 338.1 210.7 335.2 215.9C332.3 221.1 327.8 223.7 321.8 223.7C315.5 223.7 311 221 308.1 215.7C305.4 210.7 303.9 202.9 303.8 192.5C303.8 191.9 303.8 191.2 303.8 190.6V151.3V151.3Z"
@@ -222,6 +216,7 @@ useEffect( ()=>{
                     />
                     <g id="handboy">
                       <path
+                      className="animate-pulse"
                         id="Vector_32"
                         d="M529.1 188C529.1 188 529.2 188.3 528.8 188.7C528.5 189 528 189.3 527.1 189.7C521.7 191.8 510.6 186.7 504.5 183.3C498.5 179.9 481.3 182.7 469.7 181.1C458.1 179.5 453.2 173.3 442.8 170.7C432.4 168.1 393.6 179.3 391.4 170.6C389.2 161.9 432.8 77.2 436.6 83.1C440.3 89 453.2 89.4 462.3 94.1C471.4 98.8 479.1 122.1 489.2 124.4C490.6 124.7 491.9 125.2 493.2 125.9C501.2 130.2 507 140.9 507.2 149.7C507.4 159.9 521.4 168.1 526.5 173.6C531.5 179.2 529.1 188 529.1 188Z"
                         fill="url(#paint11_linear)"
@@ -674,6 +669,7 @@ useEffect( ()=>{
                     />
                     <g id="girllight">
                       <path
+                      className="animate-pulse"
                         id="Vector_102"
                         d="M121.8 188C121.8 188 119.4 179.3 124.5 173.8C129.6 168.3 143.5 160.1 143.8 149.9C144.1 139.7 151.7 126.9 161.8 124.5C171.9 122.2 179.6 98.8 188.7 94.2C197.8 89.5 210.7 89.1 214.4 83.2C218.1 77.3 261.7 162 259.6 170.7C257.4 179.4 218.6 168.2 208.2 170.8C197.8 173.4 192.9 179.6 181.3 181.2C169.7 182.8 152.5 180 146.5 183.4C140.5 186.8 129.4 191.8 123.9 189.8C121.6 188.8 121.8 188 121.8 188Z"
                         fill="url(#paint17_linear)"

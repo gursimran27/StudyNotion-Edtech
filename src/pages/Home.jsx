@@ -13,12 +13,19 @@ import Footer from "../components/common/Footer"
 import Aos from 'aos'
 import "aos/dist/aos.css"
 import MyTypeForm from "../components/TypeForm/MyTypeForm"
+import Scroll from "../components/common/Scroll"
+import LoadingBar from 'react-top-loading-bar'
+import { useState } from 'react'
+
 
 
 const Home = () => {
 
+    const [ progress , setProgress] = useState(0)
+
     useEffect(()=>
     {
+        setProgress(100)
         Aos.init({
             duration: 800,
             offset: 120,
@@ -29,6 +36,17 @@ const Home = () => {
 
   return (
     <div className=' mt-14'>
+
+        <LoadingBar
+          color='#f11946'
+          progress={progress}
+          onLoaderFinished={() =>(setProgress(0))}
+          // height={3}
+          loaderSpeed={2500}
+          waitingTime={2600}
+        />
+
+        <Scroll/>
 
         {/* Section-1 */}
         <div className="relative mx-auto flex flex-col w-11/12 items-center max-w-maxContent text-white justify-between">
@@ -77,7 +95,7 @@ const Home = () => {
             </div>
 
             {/* code section-1 */}
-            <div data-aos="slide-right" className='group'>
+            <div data-aos="fade-down-right" className='group'>
                 <CodeBlocks 
                     position={" lg:flex-row"}
                     heading={
@@ -113,7 +131,7 @@ const Home = () => {
             </div>
 
             {/* code section-2 */}
-            <div data-aos="slide-left"> 
+            <div data-aos="fade-up-left"> 
                 <CodeBlocks 
                     position={" lg:flex-row-reverse"}
                     heading={

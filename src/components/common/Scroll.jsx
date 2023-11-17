@@ -24,7 +24,7 @@ export default function Scroll() {
         else{
          setVisible(false)
          }
-    console.log("useEffect executed",visible);
+    // console.log("useEffect executed",visible);
     },[location.pathname])
 
 

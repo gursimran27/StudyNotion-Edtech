@@ -5,9 +5,24 @@ import frameImg from "../../../assets/Images/frame.png"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 import Spinner from "../../common/Spinner"
+import { Tilt } from "react-tilt"
 
 function Template({ title, description1, description2, image, formType }) {
   const { loading } = useSelector((state) => state.auth)
+
+
+
+  const defaultOptions = {
+    reverse:        false,  // reverse the tilt direction
+    max:            35,     // max tilt rotation (degrees)
+    perspective:    1000,   // Transform perspective, the lower the more extreme the tilt gets.
+    scale:          1.1,    // 2 = 200%, 1.5 = 150%, etc..
+    speed:          1000,   // Speed of the enter/exit transition
+    transition:     true,   // Set a transition on enter/exit.
+    axis:           null,   // What axis should be disabled. Can be X or Y.
+    reset:          true,    // If the tilt effect has to be reset on exit.
+    easing:         "cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
+  }
 
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center ">
@@ -28,6 +43,7 @@ function Template({ title, description1, description2, image, formType }) {
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>
           <div className="relative mx-auto w-11/12 max-w-[450px] md:mx-0">
+          <Tilt options={defaultOptions}>
             <img
               src={frameImg}
               alt="Pattern"
@@ -43,6 +59,7 @@ function Template({ title, description1, description2, image, formType }) {
               loading="lazy"
               className="absolute -top-4 right-4 z-10"
             />
+          </Tilt>
           </div>
         </div>
       )}

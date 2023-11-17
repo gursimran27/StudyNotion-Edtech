@@ -9,12 +9,51 @@ import StatsComponent from '../components/core/AboutPage/Stats'
 import LearningGrid from '../components/core/AboutPage/LearningGrid'
 import ContactFormSection from '../components/core/AboutPage/ContactFormSection'
 import Footer from "../components/common/Footer"
+import Scroll from "../components/common/Scroll"
+import LoadingBar from 'react-top-loading-bar'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Tilt } from 'react-tilt'
+
+
+ 
 
 const About = () => {
+
+
+    const defaultOptions = {
+        reverse:false,  // reverse the tilt direction
+        max:35,     // max tilt rotation (degrees)
+        perspective:1000,   // Transform perspective, the lower the more extreme the tilt gets.
+        scale:1.1,    // 2 = 200%, 1.5 = 150%, etc..
+        speed:1000,   // Speed of the enter/exit transition
+        transition: true,   // Set a transition on enter/exit.
+        axis: null,   // What axis should be disabled. Can be X or Y.
+        reset:  true,    // If the tilt effect has to be reset on exit.
+        easing:"cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
+    }
+
+    const [progress,setProgress] = useState(0)
+
+    useEffect(()=>{
+        setProgress(100)
+    },[])
+
   return (
 
     // here i have not set the root div width as w-11/12 insted of this i had mentioned in each section
     <>
+        <LoadingBar
+          color='#f11946'
+          progress={progress}
+          onLoaderFinished={() =>(setProgress(0))}
+          // height={3}
+          loaderSpeed={700}
+          waitingTime={1000}
+        />
+
+        <Scroll/>
+
         <div className=' mt-14'>
 
             {/* Section-1 */}
@@ -33,21 +72,27 @@ const About = () => {
                     <div className="sm:h-[70px] lg:h-[150px]"></div>
 
                     <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
+                        <Tilt options={defaultOptions}>
                         <img 
                         src={BannerImage1}
                         alt='bannerImage1'
                         loading='lazy'
                         />
+                        </Tilt>
+                        <Tilt options={defaultOptions}>
                         <img 
                         src={BannerImage2}
                         alt='bannerImage2'
                         loading='lazy'
                         />
+                        </Tilt>
+                        <Tilt options={defaultOptions}>
                         <img 
                         src={BannerImage3}
                         alt='bannerImage3'
                         loading='lazy'
                         />
+                        </Tilt>
                     </div>
                     
 
@@ -87,12 +132,14 @@ const About = () => {
 
                         {/* right-one */}
                         <div>
+                           <Tilt options={defaultOptions}>
                             <img
                             src={FoundingStory}
                             alt='FoundingStory'
                             loading='lazy'
                             className="shadow-[0_0_20px_0] shadow-[#FC6767]"
                             />
+                           </Tilt>
                         </div>
 
                     </div>

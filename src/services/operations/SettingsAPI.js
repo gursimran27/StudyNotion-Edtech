@@ -4,6 +4,8 @@ import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { settingsEndpoints } from "../apis"
 import { logout } from "./authAPI"
+import { setProgress } from "../../slices/loadingBar"
+
 
 const {  //API path's
   UPDATE_DISPLAY_PICTURE_API,
@@ -14,10 +16,10 @@ const {  //API path's
 
 
 
-
 export function updateDisplayPicture(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector(
         "PUT",
@@ -28,6 +30,7 @@ export function updateDisplayPicture(token, formData) {
           Authorization: `Bearer ${token}`,
         }
       )
+      dispatch(setProgress(80))
       console.log(
         "UPDATE_DISPLAY_PICTURE_API API RESPONSE............",
         response
@@ -42,6 +45,7 @@ export function updateDisplayPicture(token, formData) {
       console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error)
       toast.error("Could Not Update Display Picture")
     }
+    dispatch(setProgress(100))
     toast.dismiss(toastId)
   }
 }
@@ -53,10 +57,12 @@ export function updateDisplayPicture(token, formData) {
 export function updateProfile(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
         Authorization: `Bearer ${token}`,
       })
+      dispatch(setProgress(80))
       console.log("UPDATE_PROFILE_API API RESPONSE............", response)
 
       if (!response.data.success) {
@@ -73,19 +79,21 @@ export function updateProfile(token, formData) {
       console.log("UPDATE_PROFILE_API API ERROR............", error)
       toast.error("Could Not Update Profile")
     }
+    dispatch(setProgress(100))
     toast.dismiss(toastId)
   }
 }
 
 
 
-
-export async function changePassword(token, formData) { //!not a redux thunk, simple func
+export async function changePassword(token, formData,dispatch) { //!not a redux thunk, simple func
   const toastId = toast.loading("Loading...")
+  dispatch(setProgress(70))
   try {
     const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
       Authorization: `Bearer ${token}`,
     })
+    dispatch(setProgress(80))
     console.log("CHANGE_PASSWORD_API API RESPONSE............", response)
 
     if (!response.data.success) {
@@ -96,6 +104,7 @@ export async function changePassword(token, formData) { //!not a redux thunk, si
     console.log("CHANGE_PASSWORD_API API ERROR............", error)
     toast.error(error.response.data.message)
   }
+  dispatch(setProgress(100))
   toast.dismiss(toastId)
 }
 
@@ -106,10 +115,12 @@ export async function changePassword(token, formData) { //!not a redux thunk, si
 export function deleteProfile(token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
         Authorization: `Bearer ${token}`,
       })
+      dispatch(setProgress(80))
       console.log("DELETE_PROFILE_API API RESPONSE............", response)
 
       if (!response.data.success) {
@@ -121,6 +132,7 @@ export function deleteProfile(token, navigate) {
       console.log("DELETE_PROFILE_API API ERROR............", error)
       toast.error("Could Not Delete Profile")
     }
+    dispatch(setProgress(100)) 
     toast.dismiss(toastId)
   }
 }

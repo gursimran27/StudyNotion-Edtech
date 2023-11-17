@@ -7,6 +7,8 @@ import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { endpoints } from "../apis"
+import { setProgress  } from "../../slices/loadingBar"
+
 
 
 // destructure the URl's from endPoints
@@ -31,12 +33,15 @@ export function sendOtp(email, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+    dispatch(setProgress(70))
     // console.log("API for sendOtp........",SENDOTP_API );
     try {
       const response = await apiConnector("POST", SENDOTP_API, {
         email,
         checkUserPresent: true,
       })
+
+      dispatch(setProgress(80))
   
       console.log("SENDOTP API RESPONSE............", response)
 
@@ -53,6 +58,7 @@ export function sendOtp(email, navigate) {
       console.log(error.message);
       toast.error("Could Not Send OTP")
     }
+    dispatch(setProgress(100))
     dispatch(setLoading(false))
     toast.dismiss(toastId)
   }
@@ -75,6 +81,7 @@ export function signUp(
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector("POST", SIGNUP_API, {
         accountType,
@@ -85,6 +92,7 @@ export function signUp(
         confirmPassword,
         otp,
       })
+      dispatch(setProgress(80))
 
       console.log("SIGNUP API RESPONSE............", response)
 
@@ -98,6 +106,7 @@ export function signUp(
       toast.error("Signup Failed")
       navigate("/signup")
     }
+    dispatch(setProgress(100))
     dispatch(setLoading(false))
     toast.dismiss(toastId)
   }
@@ -112,12 +121,13 @@ export function login(email, password, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector("POST", LOGIN_API, {
         email,
         password,
       })
-
+      dispatch(setProgress(80))
       console.log("LOGIN API RESPONSE............", response)
 
       if (!response.data.success) {
@@ -138,6 +148,7 @@ export function login(email, password, navigate) {
       toast.error("Login Failed")
     }
     dispatch(setLoading(false))
+    dispatch(setProgress(100))
     // console.log("loading set to false.....");
     toast.dismiss(toastId)
   }
@@ -152,11 +163,13 @@ export function getPasswordResetToken(email, setEmailSent) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector("POST", RESETPASSTOKEN_API, {
         email,
       })
 
+      dispatch(setProgress(80))
       console.log("RESETPASSTOKEN RESPONSE............", response)
 
       if (!response.data.success) {
@@ -169,6 +182,7 @@ export function getPasswordResetToken(email, setEmailSent) {
       console.log("RESETPASSTOKEN ERROR............", error)
       toast.error("Failed To Send Reset Email")
     }
+    dispatch(setProgress(100))
     toast.dismiss(toastId)
     dispatch(setLoading(false))
   }
@@ -181,6 +195,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
+    dispatch(setProgress(70))
     try {
       const response = await apiConnector("POST", RESETPASSWORD_API, {
         password,
@@ -188,6 +203,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
         token,
       })
 
+      dispatch(setProgress(80))
       console.log("RESETPASSWORD RESPONSE............", response)
 
       if (!response.data.success) {
@@ -200,6 +216,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
       console.log("RESETPASSWORD ERROR............", error)
       toast.error("Failed To Reset Password")
     }
+    dispatch(setProgress(100))
     toast.dismiss(toastId)
     dispatch(setLoading(false))
   }

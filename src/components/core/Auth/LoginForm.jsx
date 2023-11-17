@@ -2,7 +2,6 @@ import { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-
 import { login } from "../../../services/operations/authAPI"
 
 function LoginForm() {
@@ -29,7 +28,7 @@ function LoginForm() {
     dispatch(login(email, password, navigate))
   }
 
-  return (
+  return (<>
     <form
       onSubmit={handleOnSubmit}
       className="mt-6 flex w-full flex-col gap-y-4"
@@ -90,6 +89,7 @@ function LoginForm() {
         Sign In
       </button>
     </form>
+    </>
   )
 }
 
