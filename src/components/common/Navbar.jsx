@@ -10,6 +10,8 @@ import {BsChevronUp} from "react-icons/bs"
 import { apiConnector } from '../../services/apiconnector';
 import { categories } from '../../services/apis'
 import {BsChevronDown} from "react-icons/bs"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 // //Mock data for testing
@@ -111,8 +113,8 @@ const Navbar = () => {
                                             <div className='group relative flex cursor-pointer items-center gap-1 text-richblack-25'>
                                                 
                                                 <p className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200'>{ele.title}</p>
-                                                <BsChevronDown className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200 group-hover:hidden ease-in'/>
-                                                <BsChevronUp className='group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200 hidden group-hover:flex ease-in'/>
+                                                <BsChevronDown className=' group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200 group-hover:rotate-180 ease-in'/>
+                                                {/* <BsChevronUp className='group-hover:text-yellow-5 group-hover:opacity-70 transition-all duration-200 hidden group-hover:flex ease-in'/> */}
 
                                                 <div className='invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]'>
 
@@ -121,7 +123,17 @@ const Navbar = () => {
 
                                                     {
                                                         loading ? (
-                                                            <p className="text-center ">Loading...</p>)
+                                                            <div className='mt-2 -mb-3'>
+                                                                <Skeleton 
+                                                                    count={3}
+                                                                    className="flex flex-col h-[25px]"
+                                                                    baseColor="#C5C7D4"
+                                                                    highlightColor="#808B96"
+                                                                    duration={1.5}
+                                                                    // inline={true}
+                                                                />
+                                                            </div>
+                                                            )
                                                             :
                                                             subLinks.length ? 
                                                              subLinks.map( (ele,index)=>{

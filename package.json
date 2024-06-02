@@ -1,5 +1,6 @@
 {
-  "name": "react-tailwind-css-starter-pack",
+  "name": "studynotion-client",
+  "description": "This is the client side of the StudyNotion App",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,13 +9,13 @@
     "@typeform/embed-react": "^2.31.0",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.4.0",
-    "concurrently": "^8.2.0",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
+    "react-loading-skeleton": "^3.3.1",
     "react-otp-input": "^3.0.4",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^8.1.2",
@@ -26,20 +27,15 @@
     "react-type-animation": "^3.1.0",
     "web-vitals": "^2.1.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git"
-  },
-  "author": "Pranay Gupta",
-  "bugs": {
-    "url": "https://github.com/thepranaygupta/react-tailwind-css-starter-pack/issues"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "cd server && npm run dev",
-    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
+    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\"",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +56,9 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.10",
     "tailwindcss": "^3.2.7"
   }
 }

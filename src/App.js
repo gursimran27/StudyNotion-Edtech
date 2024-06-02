@@ -86,7 +86,7 @@ function App() {
               <VerifyEmail/>
             </OpenRoute>}/>
 
-
+ 
         <Route 
           element={
             <PrivateRoute>

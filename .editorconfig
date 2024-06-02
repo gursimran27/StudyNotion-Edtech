@@ -1,0 +1,15 @@
+# editorconfig.org
+# Developers can place this file at the root of a project, and when they open a file in an editor that supports EditorConfig, the settings specified in the .editorconfig file will be applied automatically.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
